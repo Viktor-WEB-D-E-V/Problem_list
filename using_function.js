@@ -24,3 +24,42 @@ function getMathResult(num, multiplier) {
 }
 
 console.log(getMathResult(5, 5));
+
+function calculateVolumeAndArea(edge) {
+  if (edge <= 0 || typeof edge === "string" || !Number.isInteger(edge)) {
+    return "An error occurred while calculating";
+  }
+  return `Cube volume is ${edge * edge * edge},surface area is ${
+    6 * (edge * edge)
+  } `;
+}
+console.log(calculateVolumeAndArea(10));
+console.log(calculateVolumeAndArea("0"));
+
+function getCoupeNumber(num) {
+  if (num < 0 || typeof num !== "number" || !Number.isInteger(num)) {
+    return "Error. Check that the seat number entered is correct";
+  }
+  if (num === 0 || num > 36) {
+    return "Such a seat number doesn't esixt";
+  }
+  return Math.ceil(num / 4);
+
+  // let seatNumber = 0;
+  // for (let i = 0; i < 9; i++) {
+  //   for (let j = 1; j <= 4; j++) {
+  //     if (j + seatNumber == num) {
+  //       return i + 1;
+  //     }
+  //   }
+  //   seatNumber += 4;
+  // }
+}
+
+console.log(getCoupeNumber(33));
+console.log(getCoupeNumber(7));
+console.log(getCoupeNumber(300));
+console.log(getCoupeNumber(0));
+console.log(getCoupeNumber(7.7));
+console.log(getCoupeNumber(-10));
+console.log(getCoupeNumber("Hello"));
