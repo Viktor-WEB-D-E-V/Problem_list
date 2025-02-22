@@ -63,3 +63,24 @@ console.log(getCoupeNumber(0));
 console.log(getCoupeNumber(7.7));
 console.log(getCoupeNumber(-10));
 console.log(getCoupeNumber("Hello"));
+
+function getTimeFromMinutes(minutes) {
+  if (
+    typeof minutes !== "number" ||
+    !Number.isInteger(minutes) ||
+    minutes < 0 ||
+    minutes > 600
+  ) {
+    return "Error, please check the input";
+  }
+
+  let hours = Math.floor(minutes / 60);
+  let mins = minutes % 60;
+
+  let hoursWord = "hours";
+  if (hours === 1) {
+    hoursWord = "hour";
+  }
+
+  return `It is ${hours} ${hoursWord} and ${mins} minutes`;
+}
