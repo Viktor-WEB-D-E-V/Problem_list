@@ -84,3 +84,12 @@ function getTimeFromMinutes(minutes) {
 
   return `It is ${hours} ${hoursWord} and ${mins} minutes`;
 }
+
+function findMaxNumber(...arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] !== "number") return 0;
+  }
+  return Math.max(...arr);
+}
+
+console.log(findMaxNumber(1, 5, 6.6, 11.1));
