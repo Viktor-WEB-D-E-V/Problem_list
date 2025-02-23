@@ -93,3 +93,20 @@ function findMaxNumber(...arr) {
 }
 
 console.log(findMaxNumber(1, 5, 6.6, 11.1));
+
+
+function fib(number) {
+  if (typeof number !== "number" || number <= 0 || !Number.isInteger(number)) {
+    return "";
+  } else if (number === 1) {
+    return 0;
+  }
+  let arr = [0, 1];
+
+  for (let i = 2; i < number; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
+  }
+  return arr.join(" ");
+}
+
+console.log(fib(11));
