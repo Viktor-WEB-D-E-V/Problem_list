@@ -177,3 +177,25 @@ let nums2 = [0, 1, 2, 2, 3, 0, 4, 2],
   val2 = 2;
 let k2 = removeElement(nums2, val2);
 console.log(k2, nums2.slice(0, k2));
+
+
+function canCompleteCircuit(gas, cost) {
+  let totalGas = 0, currentGas = 0, startIndex = 0;
+
+  for (let i = 0; i < gas.length; i++) {
+      let balance = gas[i] - cost[i];
+      totalGas += balance;
+      currentGas += balance;
+
+      if (currentGas < 0) {
+          startIndex = i + 1;
+          currentGas = 0;
+      }
+  }
+
+  return totalGas >= 0 ? startIndex : -1;
+}
+
+
+console.log(canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]));
+console.log(canCompleteCircuit([2,3,4], [3,4,3]));
