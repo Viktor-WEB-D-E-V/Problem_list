@@ -1,37 +1,67 @@
 "use strict";
-
 // Define a Person class with properties: name, age, and city.
 // Add a method introduce() that returns a string introducing the person.
 // Create at least two instances and call the introduce() method.
 // Bonus: Add a static method compareAges(person1, person2) that compares ages.
+//Solution:
+{
+  class Person {
+    constructor(name, age, city) {
+      this.name = name;
+      this.age = age;
+      this.city = city;
+    }
 
-class Person {
-  constructor(name, age, city) {
-    this.name = name;
-    this.age = age;
-    this.city = city;
-  }
+    static compareAges(person1, person2) {
+      if (person1.age === person2.age) {
+        console.log(`${person1.name} and ${person2.name} have the same age.`);
+      } else {
+        person1.age > person2.age
+          ? console.log(`${person1.name} is older than ${person2.name}.`)
+          : console.log(`${person2.name} is older than ${person1.name}.`);
+      }
+    }
 
-  static compareAges(person1, person2) {
-    if (person1.age === person2.age) {
-      console.log(`${person1.name} and ${person2.name} have the same age.`);
-    } else {
-      person1.age > person2.age
-        ? console.log(`${person1.name} is older than ${person2.name}.`)
-        : console.log(`${person2.name} is older than ${person1.name}.`);
+    introduce() {
+      return `Hello, my name is ${this.name}, I am ${this.age}. I live in ${this.city}.`;
     }
   }
 
-  introduce() {
-    return `Hello, my name is ${this.name}, I am ${this.age}. I live in ${this.city}.`;
-  }
+  const viktor = new Person("Viktor", 26, "Lviv");
+  const oksana = new Person("Oksana", 26, "Ternopil");
+
+  // console.log(viktor.name);
+  // console.log(oksana.introduce());
+
+  Person.compareAges(viktor, oksana);
 }
 
+// Inheritance: Animal & Dog Classes
+// Create an Animal class with species and sound properties.
+// Add a method makeSound() that prints the animal’s sound.
+// Create a Dog subclass that extends Animal and adds a breed property.
+// Override the makeSound() method to add "Woof!" to the output.
+// Create an instance of Dog and test its properties and methods.
+//Solution:
+{
+  class Animal {
+    constructor(species, sound) {
+      this.species = species;
+      this.sound = sound;
+    }
+    makeSound() {
+      return `${this.sound}`;
+    }
+  }
 
-const viktor = new Person("Viktor", 26, "Lviv");
-const oksana = new Person("Oksana", 26, "Ternopil");
+  class Dog extends Animal {
+    constructor(breed, species, sound) {
+      super(species, sound);
+      this.breed = breed;
+    }
+  }
 
-// console.log(viktor.name);
-// console.log(oksana.introduce());
+  const Bulldog = new Dog("Bulldog", "Dog", "Woof!");
 
-Person.compareAges(viktor, oksana);
+  console.log(Bulldog.makeSound());
+}
