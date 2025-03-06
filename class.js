@@ -65,3 +65,51 @@
 
   console.log(Bulldog.makeSound());
 }
+// 3. Implement a BankAccount Class
+// The class should have a private _balance property.
+// Add methods: deposit(amount), withdraw(amount), and getBalance().
+// Prevent over-withdrawals (e.g., you can't withdraw more than the balance).
+// Create an account instance and test the transactions.
+// Bonus: Add a static method transfer(fromAccount, toAccount, amount)
+//Solution:
+{
+  class BankAccount {
+    constructor(balance) {
+      this._balance = balance;
+    }
+    static transfer(fromAccount, toAccount, amount) {
+      if (
+        fromAccount.withdraw(amount) !== "Insufficient funds in the account."
+      ) {
+        toAccount.deposit(amount);
+      }
+    }
+
+    deposit(amount) {
+      this._balance += amount;
+
+      return this._balance;
+    }
+
+    withdraw(amount) {
+      if (amount < 0) {
+        return `Incorrect amount`;
+      } else if (amount > this._balance) {
+        return `Insufficient funds in the account.`;
+      } else {
+        this._balance -= amount;
+      }
+      return this._balance;
+    }
+    getBalance() {
+      return this._balance;
+    }
+  }
+
+  const viktorAccount = new BankAccount(10000);
+  const oksansAccount = new BankAccount(2000);
+
+  BankAccount.transfer(viktorAccount, oksansAccount, 1000);
+  console.log(viktorAccount.getBalance());
+  console.log(oksansAccount.getBalance());
+}
