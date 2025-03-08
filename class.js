@@ -113,3 +113,47 @@
   console.log(viktorAccount.getBalance());
   console.log(oksansAccount.getBalance());
 }
+
+// 4.Shopping Cart System
+// Create a Product class with name, price, and quantity.
+// Create a ShoppingCart class that can add, remove, and list products.
+// Implement a getTotalPrice() method to calculate the total price.
+// Create a cart instance, add/remove products, and test the functionality.
+//Solution:
+class Product {
+  constructor(id, name, price, quantity) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+  }
+}
+
+class ShoppingCart {
+  constructor() {
+    this.productsList = [];
+  }
+
+  addProduct(product) {
+    this.productsList.push(product);
+  }
+
+  removeProduct(id) {
+    return (this.productsList = this.productsList.filter((el) => el.id !== id));
+  }
+  viewCart() {
+    console.log(this.productsList);
+  }
+  getTotalPrice() {
+    return this.productsList.reduce((total, el) => total + el.price, 0);
+  }
+  clearCart() {
+    this.productsList = [];
+  }
+}
+const cart = new ShoppingCart();
+
+const product1 = new Product(1, "phone", 250, 1);
+const product2 = new Product(2, "Laptop", 1200, 1);
+cart.addProduct(product1);
+cart.addProduct(product2);
