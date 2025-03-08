@@ -120,40 +120,83 @@
 // Implement a getTotalPrice() method to calculate the total price.
 // Create a cart instance, add/remove products, and test the functionality.
 //Solution:
-class Product {
-  constructor(id, name, price, quantity) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
+{
+  class Product {
+    constructor(id, name, price, quantity) {
+      this.id = id;
+      this.name = name;
+      this.price = price;
+      this.quantity = quantity;
+    }
   }
+
+  class ShoppingCart {
+    constructor() {
+      this.productsList = [];
+    }
+
+    addProduct(product) {
+      this.productsList.push(product);
+    }
+
+    removeProduct(id) {
+      return (this.productsList = this.productsList.filter(
+        (el) => el.id !== id
+      ));
+    }
+    viewCart() {
+      console.log(this.productsList);
+    }
+    getTotalPrice() {
+      return this.productsList.reduce((total, el) => total + el.price, 0);
+    }
+    clearCart() {
+      this.productsList = [];
+    }
+  }
+  const cart = new ShoppingCart();
+
+  const product1 = new Product(1, "phone", 250, 1);
+  const product2 = new Product(2, "Laptop", 1200, 1);
+  cart.addProduct(product1);
+  cart.addProduct(product2);
 }
 
-class ShoppingCart {
+// 5. Singleton Logger Class
+// Create a Logger class to track logs.
+// It should only allow one instance (Singleton pattern).
+// Implement a log(message) method to store logs in an array.
+// Add a getLogs() method to return all logs.
+// Create multiple instances and verify that all share the same logs.
+
+class Logger {
   constructor() {
-    this.productsList = [];
+    if (!Logger.instance) {
+      this.logs = [];
+      Logger.instance = this; 
+    }
+    return Logger.instance;
   }
 
-  addProduct(product) {
-    this.productsList.push(product);
+
+  log(message) {
+    const timestamp = new Date().toISOString();
+    this.logs.push(`[${timestamp}] ${message}`);
   }
 
-  removeProduct(id) {
-    return (this.productsList = this.productsList.filter((el) => el.id !== id));
-  }
-  viewCart() {
-    console.log(this.productsList);
-  }
-  getTotalPrice() {
-    return this.productsList.reduce((total, el) => total + el.price, 0);
-  }
-  clearCart() {
-    this.productsList = [];
+
+  getLogs() {
+    return this.logs;
   }
 }
-const cart = new ShoppingCart();
 
-const product1 = new Product(1, "phone", 250, 1);
-const product2 = new Product(2, "Laptop", 1200, 1);
-cart.addProduct(product1);
-cart.addProduct(product2);
+
+const logger1 = new Logger();
+const logger2 = new Logger();
+
+logger1.log("User logged in");
+logger2.log("User updated profile");
+
+console.log(logger1.getLogs()); 
+console.log(logger2.getLogs());
+
