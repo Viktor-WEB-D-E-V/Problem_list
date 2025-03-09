@@ -17,8 +17,26 @@
 
   const JSONString = JSON.stringify(persone);
   const JSONParse = JSON.parse(JSONString);
-  console.log(`JSON string: ${JSONString}`);
-  console.log(`JSON parse: ${JSONParse}`);
+  // console.log(`JSON string: ${JSONString}`);
+  // console.log(`JSON parse: ${JSONParse}`);
+  // console.log(`Comparison: persone === JSONParse is ${persone === JSONParse}`);
+}
 
-  console.log(`Comparison: persone === JSONParse is ${persone === JSONParse}`);
+// Task 2: Fetch JSON Data from an API
+// Goal: Use fetch() to retrieve JSON data and display it.
+
+// Instructions:
+// 1️. Use the fetch() function to get data from https://jsonplaceholder.typicode.com/users.
+// 2️. Convert the response to JSON.
+// 3️. Display the user in the console.
+{
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("user list:");
+      data.forEach((user) => {
+        console.log(JSON.stringify(user.name));
+      });
+    })
+    .catch((error) => console.error("Error fetching data:", error));
 }
